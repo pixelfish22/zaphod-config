@@ -1,38 +1,22 @@
-# Copyright (c) 2020 Pete Johanson
+# Copyright (c) 2020 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-if BOARD_ZAPHOD
-
-config BOARD
-	default "zaphod"
+if SHIELD_ZAPHOD_LITE
 
 config ZMK_KEYBOARD_NAME
-	default "Zaphod"
+    default "Zaphod Lite"
 
-if USB
-
-config USB_NRFX
+config SPI
 	default y
-
-config USB_DEVICE_STACK
-	default y
-
-endif # USB
 
 config ZMK_DISPLAY
 	select LV_USE_CONT
 	select LV_FONT_MONTSERRAT_26
 
-choice ZMK_DISPLAY_STATUS_SCREEN
-	default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
-
-
-endchoice
-
-config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
-	select LV_USE_LABEL
-
 if ZMK_DISPLAY
+
+config SYSTEM_WORKQUEUE_STACK_SIZE
+    default 2048
 
 choice LV_FONT_DEFAULT
     default LV_FONT_DEFAULT_MONTSERRAT_26
@@ -43,9 +27,6 @@ choice ZMK_LV_FONT_DEFAULT_SMALL
     default ZMK_LV_FONT_DEFAULT_SMALL_MONTSERRAT_26
 
 endchoice
-
-config SPI
-	default y
 
 config LS0XX
 	default y
@@ -66,16 +47,4 @@ config LV_Z_VDB_SIZE
 
 endif # ZMK_DISPLAY
 
-config BT_CTLR
-	default BT
-
-config ZMK_BLE
-	default y
-
-config ZMK_USB
-	default y
-
-config ZMK_BATTERY_VOLTAGE_DIVIDER
-	default y
-
-endif # BOARD_ZAPHOD
+endif # SHIELD_ZAPHOD_LITE
